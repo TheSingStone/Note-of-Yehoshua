@@ -14,15 +14,10 @@
 
 ~~~C++
 logFilePath = sysconfig.get_path(KEY_PATH_ROOT).c_str();
-
 logFilePath += static_cast<AnsiString>("res/log/logFile.txt");
-
 if(logFile != NULL)
-
   logFile.close();
-
 logFile.open(logFilePath.c_str(),ios::app);
-
 'logFile.clear();
 ~~~
 
@@ -142,3 +137,4 @@ if(dlgOpen3->Execute()){
     return;				/*预防打开后没有选中就关闭*/
 }
 ```
+
