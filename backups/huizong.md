@@ -16,6 +16,10 @@
 
 **6. Merlin6 Prepare**
 
+**7. Mac 6P 7P Output Gamma曲线调整方式需要改进**
+
+**8.atestGamma添加Charts**
+
 ## 一. 处理问题进展
 
 ### 处理问题进展表
@@ -150,6 +154,8 @@ logFile.open(logFilePath.c_str(),ios::app);
 
 \10.查看Tool的Owner直接查看code的log，看看最近上传的人。
 
+\11.在BCB中查看自己的工程文件的目录，可以通过点击**View Unit按钮（Ctrl+F12)**。
+
 #### 2.4 在VideoPath中添加PTG步骤
 
 因为BCB版本的VideoPath是用xml写UI部分的，所以修改分为两大部分：
@@ -241,9 +247,11 @@ if(dlgOpen3->Execute()){
 }
 ~~~
 
-#### 2.10 如何映射磁盘驱动器
+#### 2.10 PC系统
 
-打开我的电脑页面：工具-->映射磁盘驱动器-->复制粘贴欲映射的路径；
+1. 打开我的电脑页面：工具-->映射磁盘驱动器-->复制粘贴欲映射的路径；
+
+2. 
 
 ### 3 C++相关
 
@@ -357,7 +365,34 @@ C++中**const** 定义的变量称为常变量。变量的形式，常量的作�
 
 **3. pa = new Cat;这里指针赋值犯了错误，应该为pa = new Cat;**
 
-#### Day 5
+#### Day 5 
+
+<span style = 'background:red;'>**友元**</span>
+
+类的数据成员一般定义为私有成员，成员函数一般定义为公有的，依此提供类与外界间的**通信接口**。
+
+有时需要定义一些函数，**这些函数不是类的一部分**，**但又需要频繁地访问类的数据成员**，这时可以将这些函数定义为该类的友元函数。友元可以是一个函数，该函数被称为**友元函数**；友元也可以是一个类，该类被称为**友元类**。
+
+友元函数是可以直接访问类的私有成员的非成员函数。它是定义在类外的普通函数，它不属于任何类，但需要在类的定义中加以声明，声明时只需在友元的名称前加上关键字
+friend，其格式如下：
+**<span style = 'color:red;'>friend 类型函数名(形式参数); </span>**或者
+
+<span style = 'color:red;'>**friend class 类名;    其中：friend 和class 是关键字，类名必须是程序中的一个已定义过的类。**</span>
+
+<span style = 'background:red;'>**继承与派生**</span>
+
+```C++
+class 派生类名：[继承方式] 基类名
+{
+派生类成员声明；
+};                /* is -a 关系*/
+```
+
+一个派生类可以同时有多个基类，这种情况称为多重继承，派生类只有一个基类，称为单继承。
+
+**公有继承**：基类的公有成员和保护成员在派生类中保持原有访问属性，其私有成员仍为基类的私有成员。
+**私有继承**：基类的公有成员和保护成员在派生类中成了私有成员，其私有成员仍为基类的私有成员。
+**保护继承**：基类的公有成员和保护成员在派生类中成了保护成员，其私有成员仍为基类的私有成员。
 
 ### 4 硬件相关
 
@@ -619,7 +654,9 @@ Debug mode 2: Show max-min level
 
 ![image-20200107144458631](image-20200107144458631.png)
 
-![image-20200107144507385](image-20200107144507385.png)  
+![image-20200107144507385](image-20200107144507385.png)
+
+  
 
 具体算法需要进一步挖掘。
 
@@ -634,5 +671,22 @@ Debug mode 2: Show max-min level
 1. 编辑完summary.md后，使用**gitbook init**.
 
 2. 使用**gitbook pdf  ./ ./1.pdf**，生成pdf文件。
+
+3. typora中设置字体颜色：
+
+   ~~~html
+   <span style='color:字体颜色;background:背景颜色;font-size:文字大小;font-family:字体;'>文字</span>
+   ~~~
+
+   | COLOR   | result                                   |
+   | :------ | :--------------------------------------- |
+   | maroon  | <span style='color:maroon;'>文字</span>  |
+   | fuchsia | <span style='color:fuchsia;'>文字</span> |
+   | red     | <span style='color:red;'>文字</span>     |
+   | brown   | <span style='color:brown;'>文字</span>   |
+   | blue    | <span style='color:blue;'>文字</span>    |
+   | aqua    | <span style='color:aqua;'>文字</span>    |
+
+   
 
 ### 7 python/图像处理
