@@ -95,13 +95,15 @@ beta = nlinfit(___,Name,Value)
 
 #### 1.3 FYI
 
-\1. 投影屏幕的新方法: 如果IC已经烧录img，可以读入图片，则可以通过读图来盖掉OSD，进而实现打Pattern。（from [**elitsai**](mailto:elitsai@realtek.com)）
+1. 投影屏幕的新方法: 如果IC已经烧录img，可以读入图片，则可以通过读图来盖掉OSD，进而实现打Pattern。（from [**elitsai**](mailto:elitsai@realtek.com)）
 
-\2. 如何减少其他IP对Gamma Measure精度的影响?可在Debug页面关掉能关掉的IP，具体关掉的页面如下图所示（from [**sharlene**](mailto:sharlene.chang@realtek.com)）：
+2. 如何减少其他IP对Gamma Measure精度的影响?可在Debug页面关掉能关掉的IP，具体关掉的页面如下图所示（from [**sharlene**](mailto:sharlene.chang@realtek.com)）：
 
 ![image-20200107132209893](image-20200107132209893.png)
 
 ![image-20200107132218546](image-20200107132218546.png)
+
+3. LUT的组成部分大都是：0x g0 d0 d1;
 
 
 
@@ -251,7 +253,14 @@ if(dlgOpen3->Execute()){
 
 1. 打开我的电脑页面：工具-->映射磁盘驱动器-->复制粘贴欲映射的路径；
 
-2. 
+
+#### 2.11 FAQ About Tool
+
+1. QT如何输出十六进制格式的数据：
+
+   ```C++
+   QString r1 = QString("%1").arg(forceBg["r"].toQString() , 0, 16);
+   ```
 
 ### 3 C++相关
 
@@ -365,7 +374,7 @@ C++中**const** 定义的变量称为常变量。变量的形式，常量的作�
 
 **3. pa = new Cat;这里指针赋值犯了错误，应该为pa = new Cat;**
 
-#### Day 5 
+#### Day 5（/*避免过多子标题，C++知识都放在此条目下*/） 
 
 <span style = 'background:red;'>**友元**</span>
 
@@ -435,6 +444,15 @@ TM：Time Measure，各参数含义。
 | hs_ out    | H-sync output   |
 
 DataAccess：接Source后，直接点击（查看selective curve…中模块是否为自己选的及读取功能）
+
+2.Merlin 4 和Merlin 5有关OSD_Gamma的
+
+#define  OSDOVL_MIXER_GAMMA1_PORT_VADDR                     	(0xb802b070)
+#define  OSDOVL_MIXER_GAMMA1_CTRL_1_VADDR                   	(0xb802b074)
+#define  OSDOVL_MIXER_GAMMA2_PORT_VADDR                     	(0xb802b078)
+#define  OSDOVL_MIXER_GAMMA2_CTRL_1_VADDR                   	(0xb802b07c)
+
+这几个寄存器对应地址不一致。
 
 ### 5 系统课程
 
