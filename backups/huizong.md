@@ -30,25 +30,23 @@
 
 ### Log备忘录
 
-1.RT电脑IP： 172.22.38.139
+1. RT电脑IP： 172.22.38.139
 
-用户名：      RTDOMAIN\PUBUSER_MM04
+   用户名：      RTDOMAIN\PUBUSER_MM04
 
-密码：       RTKVIPwinner99
+   密码：       RTKVIPwinner99
 
- 
+2. 日期：2019/12/20 
 
-2.日期：2019/12/20 
+   试图注释掉Merlin5 Gamma Measure中的meaPara.myCa210部分；
 
-试图注释掉Merlin5 Gamma Measure中的meaPara.myCa210部分；
+   修改Get Date；
 
-修改Get Date；
+   修改Connect后0Cal；
 
-修改Connect后0Cal；
+3. 下载Skype For Business ： https://products.office.com/en/skype-for-business/download-app#desktopAppDownloadregion
 
-3.下载Skype For Business ： https://products.office.com/en/skype-for-business/download-app#desktopAppDownloadregion
-
- 
+4. 烧录Mac7P的img记得放入Y:\MM2\SD\VIP\Daily(FW)文件夹里。
 
 ## 二. 笔记（经验整理）
 
@@ -111,13 +109,13 @@ beta = nlinfit(___,Name,Value)
 
 #### 2.1 CnPack技巧
 
-1.Shift+F2启用或停用；
+1. Shift+F2启用或停用；
 
-2.Ctrl+Shift+V局部变量编辑区域；
+2. Ctrl+Shift+V局部变量编辑区域；
 
-3.专家包的source目录里有cnDebug.pas文件，这是一个供运行期间输出调试的接口单元，使用cnDebugViwer查看；
+3. 专家包的source目录里有cnDebug.pas文件，这是一个供运行期间输出调试的接口单元，使用cnDebugViwer查看；
 
-4.代码的自动完成功能：把安装的source目录PSDedEx目录放到 搜索路径中；
+4. 代码的自动完成功能：把安装的source目录PSDedEx目录放到 搜索路径中；
 
 #### 2.2 Gamma Measure logFile路径设置 ：
 
@@ -132,31 +130,31 @@ logFile.open(logFilePath.c_str(),ios::app);
 
 #### 2.3 Tool Global
 
-\1.platform.db蕴含了注册IC的信息——比如说当新增IC的时候，光更新源代码是无法在Tool里增加这个页面的信息的；
+1. platform.db蕴含了注册IC的信息——比如说当新增IC的时候，光更新源代码是无法在Tool里增加这个页面的信息的；
 
-\2.当使用BCB的时候Can’t Create CBuilder6.0/Bin/InitCC32.exe的时候，使用右击管理员模式可以打开；
+2. 当使用BCB的时候Can’t Create CBuilder6.0/Bin/InitCC32.exe的时候，使用右击管理员模式可以打开；
 
-\3.有时候为了获得rBus的信息，用寄存器的虚拟名字搜索不到时，可以考虑搜rBus内部的信息；
+3. 有时候为了获得rBus的信息，用寄存器的虚拟名字搜索不到时，可以考虑搜rBus内部的信息；
 
-也可以使用notepad ++的在文件中搜索的功能，速度会很快。
+   也可以使用notepad ++的在文件中搜索的功能，速度会很快。
 
-\4.添加.cpp文件时，除了要包对应的头文件，不要忘记使用Add To Project，同理可添加.lib文件等；
+4. 添加.cpp文件时，除了要包对应的头文件，不要忘记使用Add To Project，同理可添加.lib文件等；
 
-\5. .h文件不可包太多头文件；
+5. .h文件不可包太多头文件；
 
- FYI：在整理Global文件中必须的文件时，比较简便的方法是让编辑器告诉你哪些文件缺失，这样整理起来会快一点。
+    FYI：在整理Global文件中必须的文件时，比较简便的方法是让编辑器告诉你哪些文件缺失，这样整理起来会快一点。
 
-\6. 使Tab不可见：TabSheet1->TabVisible = false;
+6. 使Tab不可见：TabSheet1->TabVisible = false;
 
-\7. 使用SecureCRT记得要断掉之后，才能在Tool里进行读写操作。
+7. 使用SecureCRT记得要断掉之后，才能在Tool里进行读写操作。
 
-\8.  测试使用的Tool，可以用platform.db release比较轻便的Tool发给测试人员。
+8. 测试使用的Tool，可以用platform.db release比较轻便的Tool发给测试人员。
 
-\9. 如果想要最小的测试版的Tool，则使用standalone版本。
+9. 如果想要最小的测试版的Tool，则使用standalone版本。
 
-\10.查看Tool的Owner直接查看code的log，看看最近上传的人。
+10. 查看Tool的Owner直接查看code的log，看看最近上传的人。
 
-\11.在BCB中查看自己的工程文件的目录，可以通过点击**View Unit按钮（Ctrl+F12)**。
+11. 在BCB中查看自己的工程文件的目录，可以通过点击**View Unit按钮（Ctrl+F12)**。
 
 #### 2.4 在VideoPath中添加PTG步骤
 
@@ -231,11 +229,35 @@ ui->lblScene->setPixmap(QPixmap::fromImage(*img));
 void __fastcall TForm1::ScrollBar1Scroll(TObject *Sender,
    TScrollCode ScrollCode, int &ScrollPos)
 {
-    **Edit1->SetFocus();**
+    Edit1->SetFocus();
 }
 ~~~
 
 使用OnChange函数之后，往往会使得焦点失去，通过**SetFocus()**函数重新获得焦点。
+
+OnChange函数与OnScroll函数的区别：OnChange函数是在移动过程中的每一刻都会触发的 ,所以适合和Edit关联使用；
+
+​																		OnScroll函数是移动后停下来的一刻才会触发，适合和读写寄存器共同使用。（如下示例）
+
+~~~C++
+void __fastcall TRtkForm_frmMain::scrlbrFstLineCFGScroll(TObject *Sender,
+      TScrollCode ScrollCode, int &ScrollPos)
+{
+    pcid_pcid_ctrl_RBUS   reg_pcid_pcid_ctrl;
+
+    if(ScrollCode == scEndScroll){ /*接受Scroll操作状态的参数*/
+        if(podStruct.m_readOnly)
+            return;
+        StopByMode();
+        BurstReadWord(PCID_PCID_CTRL_2_VADDR,&reg_pcid_pcid_ctrl_2.regValue);
+        reg_pcid_pcid_ctrl_2.pcid_tab1_r_thd = scrlbr_pcid_tab1_r_thd->Position;
+        BurstWriteWord(PCID_PCID_CTRL_2_VADDR,&reg_pcid_pcid_ctrl_2.regValue);
+        RunByMode();
+    }
+}
+~~~
+
+
 
 #### 2.9 打开文件常见的防呆语句
 
@@ -262,75 +284,71 @@ if(dlgOpen3->Execute()){
    QString r1 = QString("%1").arg(forceBg["r"].toQString() , 0, 16);
    ```
 
+2. BCB中删除一个组件的步骤：
+
+   ​	a. 首先搜索出关键字，在cpp文件中删除对应的响应函数,并且使用这个组件的地方；
+
+   ​	b. 在h文件中删除对应的定义；
+
+   ​	c. 在UI中删除组件。
+
 ### 3 C++相关
 
-#### Day 1
+1. 全局变量：生命周期跨越整个程序运行期间，优先于Main函数进行初始化，在main函数返回后撤销即析构。
 
-\1. 全局变量：生命周期跨越整个程序运行期间，优先于Main函数进行初始化，在main函数返回后撤销即析构。
+2. CSingleClock：
 
-\2. CSingleClock：
+   a. 主要用于同步多个线程对于同一个数据类型的即时访问；
 
-{1.主要用于同步多个线程对于同一个数据类型的即时访问；
+   b. 在创建CSingleClock对象时会自动根据参数赋值，而且会lock，不用显式lockà即只需要创建对象即可lock；
 
-2.在创建CSingleClock对象时会自动根据参数赋值，而且会lock，不用显式lockà即只需要创建对象即可lock；
+   c. CSingleClock对象需要有一个从CSyncObject对象；
 
-\3. CSingleClock对象需要有一个从CSyncObject对象；
+3. 符号的优先级：数学运算符优先于关系运算符 
 
-} 
+4. 纯虚函数：C++通过支持纯虚函数来支持创建抽象数据类型，纯虚函数必须在派生类中进行重写，任何包含有一个或多个纯虚函数的类都是抽象类。抽象类智能作为基类而不能实例化。 
 
-3.符号的优先级：数学运算符优先于关系运算符
+5. 参数化列表与构造函数的关系：AB a(5) ,b(3),c[3],*p[2] = {&a,&b};
 
- 
+    a(5)，一个对象调用一次构造函数；
 
-4.纯虚函数：C++通过支持纯虚函数来支持创建抽象数据类型，纯虚函数必须在派生类中进行重写，任何包含有一个或多个纯虚函数的类都是抽象类。抽象类智能作为基类而不能实例化。
+    c[3], 数组调用3次构造函数；
 
- 
+    指针，没有指向新的空间，更没有分配内存，不会调用构造。
 
-5.参数化列表与构造函数的关系：AB a(5) ,b(3),c[3],*p[2] = {&a,&b};
+6. *(p++) += 100; 等价于 *p += 100; p++;
 
- a(5)，一个对象调用一次构造函数；
+   P++是运行完代码后再运行的。
 
- c[3], 数组调用3次构造函数；
+7. int b[3][5]; /*这里b指向一个数组的指针*/
 
- 指针，没有指向新的空间，更没有分配内存，不会调用构造。
+   （1）数组指针：指向多个元素的指针。int (*p)[5] = b; 
 
-\6. *(p++) += 100; 等价于 *p += 100; p++;
+      （2）指针数组：一个存放制定类型指针的数组。 Iint *p[3] = {b[0],b[1]};
 
-P++是运行完代码后再运行的。
+8. 以#开头的语句都是预处理阶段处理的
 
- \7.  int b[3][5]; /*这里b指向一个数组的指针*/
+   {#include头文件; #define 宏定义; #ifdef #endif条件编译;}
 
-（1）数组指针：指向多个元素的指针。int (*p)[5] = b; 
+9. 面向对象语言特点：抽象，封装，继承，多态。
 
-   （2）指针数组：一个存放制定类型指针的数组。 Iint *p[3] = {b[0],b[1]};
+10. 原码，反码和补码的概念：https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html；
 
-  \8. 以#开头的语句都是预处理阶段处理的
+11. Int x = 1;int y = ~x; y是-2，因为计算机按照补码运算；
 
-{#include头文件; #define 宏定义; #ifdef #endif条件编译;}
+12. Scanf的字符不会输出到屏幕上，除了使用空白字符作为分隔符还可以使用其他分隔符；
 
-  \9. 面向对象语言特点：抽象，封装，继承，多态。
+13. 类型强转（type cast）
 
-#### Day 2
+    ①  static_cast<目标类型> (标识符)
 
-\1.   原码，反码和补码的概念：https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html；
+    {在一个方向上可以作隐式转换，在另外一个方向上就可以作静态转换。}
 
-\2.   Int x = 1;int y = ~x; y是-2，因为计算机按照补码运算；
+    ② reinterpret_cast<目标类型> (标识符)
 
-\3.   Scanf的字符不会输出到屏幕上，除了使用空白字符作为分隔符还可以使用其他分隔符；
+    {将数据以二进制存在形式的重新解释}
 
-#### Day 3
-
-类型强转（type cast）
-
-①  static_cast<目标类型> (标识符)
-
-{在一个方向上可以作隐式转换，在另外一个方向上就可以作静态转换。}
-
-② reinterpret_cast<目标类型> (标识符)
-
-{将数据以二进制存在形式的重新解释}
-
-einterpret_cast 最famous的特性就是什么都可以，转换任意的类型，包括C++所有通用类型，所以也最不安全
+    einterpret_cast 最famous的特性就是什么都可以，转换任意的类型，包括C++所有通用类型，所以也最不安全
 
 ~~~C++
 int x = 0x12345648;
@@ -344,23 +362,21 @@ return 0;
 %x 对应输出小写字母十六进制数
 ~~~
 
-应用：1. 整形和指针之间的相互转化
+​			应用：a. 整形和指针之间的相互转化
 
-2. 指针和引用转化为任意类型的指针和引用
+​						b. 指针和引用转化为任意类型的指针和引用
 
-C++中**const** 定义的变量称为常变量。变量的形式，常量的作用，用作常量，**常用于取代#define 宏常量**。
+​			C++中**const** 定义的变量称为常变量。变量的形式，常量的作用，用作常量，**常用于取代#define 宏常量**。
 
-③ dynamic_cast<目标类型> (标识符)
+​		③ dynamic_cast<目标类型> (标识符)
 
-用于多态中的父子类之间的强制转化
+​		用于多态中的父子类之间的强制转化
 
-④ (脱)常类型转换：const_cast<目标类型> (标识符) //目标类类型只能是指针或引用。
+​		④ (脱)常类型转换：const_cast<目标类型> (标识符) //目标类类型只能是指针或引用。
 
-用来移除对象的常量性(cast away the constness)，使用const_cast 去除const 限定的通常是为了**函数能够接受这个实际参数**。
+​		用来移除对象的常量性(cast away the constness)，使用const_cast 去除const 限定的通常是为了**函数能够接受这个实际参数**。
 
-#### Day 4
-
-**1. 动多态，不是在编译器阶段决定，而是在运行阶段决定，故称为动多态。动多态行成的条件如下:**
+14. 动多态，不是在编译器阶段决定，而是在运行阶段决定，故称为动多态。动多态行成的条件如下:
 
 1. 父类中有虚函数。
 
@@ -368,13 +384,13 @@ C++中**const** 定义的变量称为常变量。变量的形式，常量的作�
 
 3. 通过己被子类对象赋值的父类指针或引用，调用共用接口。
 
-**2. 纯虚函数 virtual*函数声明= 0;**
+15. 纯虚函数 virtual*函数声明= 0;**
 
-含有纯虚函数的类，称为抽象基类，不可实列化。即不能创建对象，存在的意义就是被继承，提供族类的公共接口，java 中称为interface。
+    含有纯虚函数的类，称为抽象基类，不可实列化。即不能创建对象，存在的意义就是被继承，提供族类的公共接口，java 中称为interface。
 
-**3. pa = new Cat;这里指针赋值犯了错误，应该为pa = new Cat;**
+16. pa = new Cat;这里指针赋值犯了错误，应该为pa = new Cat;**
 
-#### Day 5（/*避免过多子标题，C++知识都放在此条目下*/） 
+#### （/*避免过多子标题，C++知识都放在此条目下*/） 
 
 <span style = 'background:red;'>**友元**</span>
 
@@ -405,21 +421,21 @@ class 派生类名：[继承方式] 基类名
 
 ### 4 硬件相关
 
-\1.   Patten Gen的功能是打出需要的背光，即特定格式的画面。比如液晶的发光特性可能会导致一些特殊的画面（比如周期性栅线画面）异常，通过打出对应的画面可以针对性地解决这些问题。
+1. Patten Gen的功能是打出需要的背光，即特定格式的画面。比如液晶的发光特性可能会导致一些特殊的画面（比如周期性栅线画面）异常，通过打出对应的画面可以针对性地解决这些问题。
 
-\2.   install_user_RTD28XOB8_A1_129：红色部分标识的就是BootCode信号；
+2. install_user_RTD28XOB8_A1_129：红色部分标识的就是BootCode信号；
 
-烧录的过程中，如果按Tab键进入不了bootcode, 往往需要重新烧rescue.bin；
+   烧录的过程中，如果按Tab键进入不了bootcode, 往往需要重新烧rescue.bin；
 
 #### 4.1 验证Video path 的步骤和方法：
 
-测试主要分为三个Path：Main，Sub和DMA（在实际成像过程中要注意OSD）
+1. 测试主要分为三个Path：Main，Sub和DMA（在实际成像过程中要注意OSD）
 
-PTG：接Source后，直接点击；
+   PTG：接Source后，直接点击；
 
-CRC：接Source后，直接点击（切成静止画面后，观察是否变化），因为CRC是当前每帧图像算出的校验码，因此画面静止后理论算出的CRC应该保持不变；
+   CRC：接Source后，直接点击（切成静止画面后，观察是否变化），因为CRC是当前每帧图像算出的校验码，因此画面静止后理论算出的CRC应该保持不变；
 
-TM：Time Measure，各参数含义。
+   TM：Time Measure，各参数含义。
 
 | **Input** | **Description**    |
 | --------- | ------------------ |
@@ -432,8 +448,6 @@ TM：Time Measure，各参数含义。
 | hs_in     | H-sync input       |
 | vs_in     | V-sync input       |
 
-
-
 | **output** | **Description** |
 | ---------- | --------------- |
 | den_out    | Data enable     |
@@ -443,16 +457,16 @@ TM：Time Measure，各参数含义。
 | vs_ out    | V-sync output   |
 | hs_ out    | H-sync output   |
 
-DataAccess：接Source后，直接点击（查看selective curve…中模块是否为自己选的及读取功能）
+​				DataAccess：接Source后，直接点击（查看selective curve…中模块是否为自己选的及读取功能）
 
-2.Merlin 4 和Merlin 5有关OSD_Gamma的
+2. Merlin 4 和Merlin 5有关OSD_Gamma的
 
-#define  OSDOVL_MIXER_GAMMA1_PORT_VADDR                     	(0xb802b070)
-#define  OSDOVL_MIXER_GAMMA1_CTRL_1_VADDR                   	(0xb802b074)
-#define  OSDOVL_MIXER_GAMMA2_PORT_VADDR                     	(0xb802b078)
-#define  OSDOVL_MIXER_GAMMA2_CTRL_1_VADDR                   	(0xb802b07c)
+   #define  OSDOVL_MIXER_GAMMA1_PORT_VADDR                     	(0xb802b070)
+   #define  OSDOVL_MIXER_GAMMA1_CTRL_1_VADDR                   	(0xb802b074)
+   #define  OSDOVL_MIXER_GAMMA2_PORT_VADDR                     	(0xb802b078)
+   #define  OSDOVL_MIXER_GAMMA2_CTRL_1_VADDR                   	(0xb802b07c)
 
-这几个寄存器对应地址不一致。
+   这几个寄存器对应地址不一致。
 
 ### 5 系统课程
 
