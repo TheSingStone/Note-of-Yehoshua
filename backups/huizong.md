@@ -271,9 +271,20 @@ if(dlgOpen3->Execute()){
 }
 ~~~
 
-#### 2.10 PC系统
+#### 2.10 FAQ About PC
 
 1. 打开我的电脑页面：工具-->映射磁盘驱动器-->复制粘贴欲映射的路径；
+
+2. 如何让任意窗口置顶？-->制作脚本的方式，使用AutoHotKey，写入以下文字：
+
+   ~~~
+   ^space::
+   WinGetActiveTitle,w
+   Winset,AlwaysOnTop,Toggle,%w%
+   return
+   ~~~
+
+   
 
 
 #### 2.11 FAQ About Tool
