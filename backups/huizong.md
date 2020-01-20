@@ -284,7 +284,9 @@ if(dlgOpen3->Execute()){
    return
    ~~~
 
+   让ahk脚本开机启动：请把文件置于 C:\Users\用户名称\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup路径下。
    
+3. 
 
 
 #### 2.11 FAQ About Tool
