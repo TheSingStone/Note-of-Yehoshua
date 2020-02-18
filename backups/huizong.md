@@ -305,6 +305,12 @@ if(dlgOpen3->Execute()){
 
    ​	c. 在UI中删除组件。
 
+3. BCB中添加PageControl(PageControl和TabSheet的区别)
+
+   <img src="3.JPG" style="zoom: 50%;" />
+
+   改动Page的先后顺序，只要修改PageIndex即可。
+
 ### 3 C++相关
 
 1. 全局变量：生命周期跨越整个程序运行期间，优先于Main函数进行初始化，在main函数返回后撤销即析构。
@@ -440,15 +446,14 @@ class 派生类名：[继承方式] 基类名
 
    烧录的过程中，如果按Tab键进入不了bootcode, 往往需要重新烧rescue.bin；
 
-#### 4.1 验证Video path 的步骤和方法：
+3. 验证Video path 的步骤和方法：
+   1. 测试主要分为三个Path：Main，Sub和DMA（在实际成像过程中要注意OSD）
 
-1. 测试主要分为三个Path：Main，Sub和DMA（在实际成像过程中要注意OSD）
+      PTG：接Source后，直接点击；
 
-   PTG：接Source后，直接点击；
+      CRC：接Source后，直接点击（切成静止画面后，观察是否变化），因为CRC是当前每帧图像算出的校验码，因此画面静止后理论算出的CRC应该保持不变；
 
-   CRC：接Source后，直接点击（切成静止画面后，观察是否变化），因为CRC是当前每帧图像算出的校验码，因此画面静止后理论算出的CRC应该保持不变；
-
-   TM：Time Measure，各参数含义。
+      TM：Time Measure，各参数含义。
 
 | **Input** | **Description**    |
 | --------- | ------------------ |
@@ -472,14 +477,20 @@ class 派生类名：[继承方式] 基类名
 
 ​				DataAccess：接Source后，直接点击（查看selective curve…中模块是否为自己选的及读取功能）
 
-2. Merlin 4 和Merlin 5有关OSD_Gamma的
+​					b. Merlin 4 和Merlin 5有关OSD_Gamma的
 
-   #define  OSDOVL_MIXER_GAMMA1_PORT_VADDR                     	(0xb802b070)
-   #define  OSDOVL_MIXER_GAMMA1_CTRL_1_VADDR                   	(0xb802b074)
-   #define  OSDOVL_MIXER_GAMMA2_PORT_VADDR                     	(0xb802b078)
-   #define  OSDOVL_MIXER_GAMMA2_CTRL_1_VADDR                   	(0xb802b07c)
+​					#define  OSDOVL_MIXER_GAMMA1_PORT_VADDR                     	(0xb802b070)
+​					#define  OSDOVL_MIXER_GAMMA1_CTRL_1_VADDR                   	(0xb802b074)
+​					#define  OSDOVL_MIXER_GAMMA2_PORT_VADDR                     	(0xb802b078)
+​					#define  OSDOVL_MIXER_GAMMA2_CTRL_1_VADDR                   	(0xb802b07c)
 
-   这几个寄存器对应地址不一致。
+​					这几个寄存器对应地址不一致。
+
+4. LSB(Least Significant Bit)是“最低有效位”。MSB(Most Significant Bit)是“最高有效位”。
+
+   MSB LSB：起始地址为最高位， 最后地址为最低位。
+
+   LSB MSB：起始地址为最低位，最后地址为最高位。
 
 ### 5 系统课程
 
