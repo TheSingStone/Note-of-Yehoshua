@@ -125,7 +125,7 @@ logFilePath += static_cast<AnsiString>("res/log/logFile.txt");
 if(logFile != NULL)
   logFile.close();
 logFile.open(logFilePath.c_str(),ios::app);
-'logFile.clear();
+logFile.clear();
 ~~~
 
 #### 2.3 Tool Global
@@ -310,6 +310,8 @@ if(dlgOpen3->Execute()){
    <img src="3.JPG" style="zoom: 50%;" />
 
    改动Page的先后顺序，只要修改PageIndex即可。
+
+4. ToIntDef(0)是TEdit常用的属性。
 
 ### 3 C++相关
 
