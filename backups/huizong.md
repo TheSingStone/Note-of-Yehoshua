@@ -1,6 +1,6 @@
 # Notes
 
-## 零.    待处理任务（至2019.01.10）
+## 零.    待处理任务（至2019.02.19）
 
 **1.Endo  --> 逗号错误  -->算法尝试**
 
@@ -14,11 +14,7 @@
 
 **5.BCB一些弹窗的不同分辨率下窗口需要缩放的问题**
 
-**6. Merlin6 Prepare**
-
-**7. Mac 6P 7P Output Gamma曲线调整方式需要改进**
-
-**8.atestGamma添加Charts**
+**6. Mac 6P 7P Output Gamma曲线调整方式需要改进**
 
 ## 一. 处理问题进展
 
@@ -286,6 +282,8 @@ if(dlgOpen3->Execute()){
 
    让ahk脚本开机启动：请把文件置于 C:\Users\用户名称\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup路径下。
    
+   （这里使用Ctrl+Space来实现窗口置顶）
+   
 3. 
 
 
@@ -311,7 +309,24 @@ if(dlgOpen3->Execute()){
 
    改动Page的先后顺序，只要修改PageIndex即可。
 
-4. ToIntDef(0)是TEdit常用的属性。
+4. ToIntDef(0)是TEdit常用的属性，比ToInt()更安全。
+5. BCB中新建一个继承现有类的步骤：
+   1. File-->New-->Other-->当前DLL名字的Sheet
+   2. 选择要继承的类，双击；
+   3. 在新建好的类中修改Name属性；
+
+6. QT中QLayOut的安全删除：
+
+   ~~~c++
+   QLayoutItem *child;
+   while(child=this->ui->centralWidget->layout()->takeAt(0)) {
+       delete child;
+   }
+   ~~~
+
+   这里有一个问题，LayOut增加组价的时候是使用AddWidget，但是删除的时候却删除Item。
+
+   原因：https://blog.csdn.net/xy913741894/article/details/76814985?locationNum=8&fps=1
 
 ### 3 C++相关
 
