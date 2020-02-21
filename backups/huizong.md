@@ -1,18 +1,20 @@
 # Notes
 
+<span style='color:red;'>如果一件事决定去做，请一定尽快做完</span>
+
 ## 零.    待处理任务（至2019.02.19）
 
-**1.Endo  --> 逗号错误  -->算法尝试**
+**1. Endo  --> 逗号错误  -->算法尝试**
 
 ​               **-->HUAWEI智慧屏的蓝光会被过滤掉的功能集成在Gamma下面，问问市场那边有没有考虑过？**
 
-**2.VideoPath所经过的模块检查**
+**2. VideoPath所经过的模块检查**
 
-**3. Mac7P的Tool问题**
+**3.  Mac7P的Tool问题**
 
-**4.Tool的setMessage的机制；**
+**4. Tool的setMessage的机制；**
 
-**5.BCB一些弹窗的不同分辨率下窗口需要缩放的问题**
+**5. BCB一些弹窗的不同分辨率下窗口需要缩放的问题**
 
 **6. Mac 6P 7P Output Gamma曲线调整方式需要改进**
 
@@ -20,9 +22,21 @@
 
 ### 处理问题进展表
 
+| 任务                     | 子任务/进度 | 经验的连接 |
+| :----------------------- | :---------- | ---------- |
+| R对应的图标              |             |            |
+| init文档以及读取initFile |             |            |
+| Button的Slots            |             |            |
 
+ Q1. CButton的属性在设置父控件的styleSheet后会改变？
 
- 
+Q2. RT_pc(CMainController)是什么意思？
+
+Q3. void setIniFileParam(QString section,QString name,QString value,**QString file=""**);
+
+Q4. ini文档是怎样读入的？--> System类是怎样工作的？
+
+Q5.typedef怎样理解？
 
 ### Log备忘录
 
@@ -284,18 +298,25 @@ if(dlgOpen3->Execute()){
    
    （这里使用Ctrl+Space来实现窗口置顶）
    
-3. 
+3. 批量去掉或替换文本中的换行符：
+
+   ![img](20160302175254607.png)
+
+4. Windows是不区分文件名大小写的，而SVN是区分的。-->所以如果涉及修改文件名大小写的操作：
+   1. 把文件保存好，放到另一个文件夹,并修改文件夹名；
+   2. 删除掉旧的文件夹，commit;
+   3. 将修改好后的文件夹放回，Commit；
 
 
 #### 2.11 FAQ About Tool
 
-1. QT如何输出十六进制格式的数据：
+1. QT如何**输出十六进制格式**的数据：
 
    ```C++
    QString r1 = QString("%1").arg(forceBg["r"].toQString() , 0, 16);
    ```
 
-2. BCB中删除一个组件的步骤：
+2. BCB中**安全删除一个组件**的步骤：
 
    ​	a. 首先搜索出关键字，在cpp文件中删除对应的响应函数,并且使用这个组件的地方；
 
@@ -307,10 +328,11 @@ if(dlgOpen3->Execute()){
 
    <img src="3.JPG" style="zoom: 50%;" />
 
-   改动Page的先后顺序，只要修改PageIndex即可。
+   **改动Page的先后顺序，只要修改PageIndex**即可。
 
 4. ToIntDef(0)是TEdit常用的属性，比ToInt()更安全。
-5. BCB中新建一个继承现有类的步骤：
+
+5. BCB中**新建一个继承现有类**的步骤：
    1. File-->New-->Other-->当前DLL名字的Sheet
    2. 选择要继承的类，双击；
    3. 在新建好的类中修改Name属性；
@@ -327,6 +349,10 @@ if(dlgOpen3->Execute()){
    这里有一个问题，LayOut增加组价的时候是使用AddWidget，但是删除的时候却删除Item。
 
    原因：https://blog.csdn.net/xy913741894/article/details/76814985?locationNum=8&fps=1
+
+7. ```c++
+   cellText(Row,Col) //顺序
+   ```
 
 ### 3 C++相关
 
