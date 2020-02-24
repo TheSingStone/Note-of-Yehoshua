@@ -24,9 +24,12 @@
 
 | 任务                     | 子任务/进度 | 经验的连接 |
 | :----------------------- | :---------- | ---------- |
-| R对应的图标              |             |            |
-| init文档以及读取initFile |             |            |
-| Button的Slots            |             |            |
+| R对应的图标              | 10          |            |
+| init文档以及读取initFile | 10          |            |
+| Button的Slots            | 10          |            |
+| ViewChange               |             |            |
+| Load/Export              |             |            |
+| Read/Write               |             |            |
 
  Q1. CButton的属性在设置父控件的styleSheet后会改变？
 
@@ -353,6 +356,13 @@ if(dlgOpen3->Execute()){
 7. ```c++
    cellText(Row,Col) //顺序
    ```
+
+8. QT 中的Q指针和D指针：
+
+   
+
+9. 加了**Q_OBJECT宏，才能支持信号槽处理**。-->加了之后请记得在Pro里稍作修改，然后rebuild。
+10.  任意函数获得CMainController指针：RT_pc(CMainController);
 
 ### 3 C++相关
 
