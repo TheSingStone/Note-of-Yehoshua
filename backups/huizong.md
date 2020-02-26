@@ -20,6 +20,9 @@
 
 ## 一. 处理问题进展
 
+- [ ] 给数据，把数据显示到Chart上
+- [ ] 整理Measure的OutPut
+
 ### 处理问题进展表
 
 | 任务                     | 子任务/进度 | 经验的连接 |
@@ -31,7 +34,7 @@
 | Load/Export              |             |            |
 | Read/Write               |             |            |
 
- Q1. CButton的属性在设置父控件的styleSheet后会改变？
+Q1. CButton的属性在设置父控件的styleSheet后会改变？
 
 Q2. RT_pc(CMainController)是什么意思？
 
@@ -40,6 +43,12 @@ Q3. void setIniFileParam(QString section,QString name,QString value,**QString fi
 Q4. ini文档是怎样读入的？--> System类是怎样工作的？
 
 Q5.typedef怎样理解？
+
+Q6. 根据需求能够变化大小的数组？
+
+Q7.BCB 中把可编辑的表格花城不可编辑表格的样式？
+
+Q8. LayoutHorizonalApacing属性是什么意思？
 
 ### Log备忘录
 
@@ -60,6 +69,12 @@ Q5.typedef怎样理解？
 3. 下载Skype For Business ： https://products.office.com/en/skype-for-business/download-app#desktopAppDownloadregion
 
 4. 烧录Mac7P的img记得放入Y:\MM2\SD\VIP\Daily(FW)文件夹里。
+
+5. 公网账号：
+
+   ![image-20200225143200842](image-20200225143200842.png)
+
+   
 
 ## 二. 笔记（经验整理）
 
@@ -366,6 +381,24 @@ if(dlgOpen3->Execute()){
 
 ### 3 C++相关
 
+#### 3.1 Global about QT
+
+1. ```C++
+   /*free current view*/
+       if(p_wgtView){
+           p_lytView->removeWidget(p_wgtView);
+           delete p_wgtView;
+           p_wgtView = NULL;
+       }
+   if(p_lytView){	//delete layout
+           ui->pnlView->setLayout(NULL);
+           delete p_lytView;
+           p_lytView = NULL;
+       }
+   ```
+
+#### 3.2 Global about C++
+
 1. 全局变量：生命周期跨越整个程序运行期间，优先于Main函数进行初始化，在main函数返回后撤销即析构。
 
 2. CSingleClock：
@@ -544,6 +577,8 @@ class 派生类名：[继承方式] 基类名
    MSB LSB：起始地址为最高位， 最后地址为最低位。
 
    LSB MSB：起始地址为最低位，最后地址为最高位。
+   
+   
 
 ### 5 系统课程
 
