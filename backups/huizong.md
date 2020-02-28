@@ -30,7 +30,7 @@
 | R对应的图标              | 10          |            |
 | init文档以及读取initFile | 10          |            |
 | Button的Slots            | 10          |            |
-| ViewChange               |             |            |
+| ViewChange               | 10          |            |
 | Load/Export              |             |            |
 | Read/Write               |             |            |
 
@@ -70,7 +70,7 @@ Q8. LayoutHorizonalApacing属性是什么意思？
 
 4. 烧录Mac7P的img记得放入Y:\MM2\SD\VIP\Daily(FW)文件夹里。
 
-5. 公网账号：
+5. 公网账号：2JMzLhNH
 
    ![image-20200225143200842](image-20200225143200842.png)
 
