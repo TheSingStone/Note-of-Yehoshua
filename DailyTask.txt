@@ -1,0 +1,23 @@
+*************** 实时 ***************
+1.Sony Project准备；
+2.SDK研究；
+3.QGamma；
+4.能否看driver或开通权限；
+************  To-do Task  ***********
+*T1: QGammaMeasure:
+	**a. Chart
+	**b. Maesure
+*T2:整理以前落下的任务
+	**a.vsd->rain;
+	**b.Basic Skill;
+*T3:Mac7P Tool查验：
+	**a.Prepare
+	**b.Y2R Measure
+*T4:VideoPath Tool和Spec;
+*T5:查看Array的写法;
+*T6:Gamma Measure中Y2R错误；
+************Tasks in free time**********
+*Ts1:写一个脚本自动把本周任务更
+	新在桌面上;
+	-->与日历联动/加载html/加载图片错误
+*Ts2:写完贪吃蛇程序

@@ -20,8 +20,9 @@
 
 ## 一. 处理问题进展
 
-- [ ] 给数据，把数据显示到Chart上
+- [x] 给数据，把数据显示到Chart上
 - [ ] 整理Measure的OutPut
+- [ ] 再验一遍Gamma Tool（不能老是有Bug）-->Due Date: 2020/03/05
 
 ### 处理问题进展表
 
@@ -74,7 +75,7 @@ Q8. LayoutHorizonalApacing属性是什么意思？
 
    ![image-20200225143200842](image-20200225143200842.png)
 
-   
+6. \\172.22.34.131\g\K7Lp_Spec2LGE是\\Yyy\G\K7Lp_Spec2LGE对应的路径。
 
 ## 二. 笔记（经验整理）
 
@@ -82,21 +83,33 @@ Q8. LayoutHorizonalApacing属性是什么意思？
 
 #### 1.1  Gamma Tool 
 
-目前发现下面的现象：
-
-1. SDK1下：CA210与Tool连接正常。
+1. 目前发现下面的现象：
+   a. SDK1下：CA210与Tool连接正常。
 
    如果不拔掉，切换SDK2，仍能够连接正常；（×）
 
    如果拔掉，切换SDK2，连接不上；                （√）
 
-2. SDK2下：CA210与Tool连接不上。
+   b. SDK2下：CA210与Tool连接不上。
 
    如果不拔掉，就切换SDK1，仍旧连接不上。（×）
 
    如果拔掉，再切SDK1，就可以连接上。        （√） 
 
 也就是说，**只有断掉PC与CA的连接再切换SDK，切换的信息才能更新**。这也是咱们以前没有发现问题的原因，建议对于安装了两个SDK的电脑，**每次切换SDK前，首先断连接和关Tool**。
+
+2. 对于Gamma Tool，经典模式打背景基本步骤(不考虑与界面交互)
+
+    ~~~C++
+	getOriBg(false);
+	bgEnable(true,false);
+	Sleep(100);
+	setBG(_RGB_BG_Color[0], _RGB_BG_Color[1], _RGB_BG_Color[2], false);//使panel显示颜色变化
+    ~~~
+    
+    
+
+
 
 #### 1.2 Gamma算法
 
@@ -325,6 +338,20 @@ if(dlgOpen3->Execute()){
    2. 删除掉旧的文件夹，commit;
    3. 将修改好后的文件夹放回，Commit；
 
+5. a. win7桌面背景保存位置:C:\Users\用户名\AppData\Roaming\Microsoft\Windows\Themes 可以在这里找到当前桌面背景图片的保存位置。
+
+   b. 系统自带的壁纸在C:\WINDOWS\Web\Wallpaper文件夹下。 这里存储的是系统自带的壁纸,可以根据个人需要将下载的壁纸放入这个文件夹。
+
+6. ![image-20200306095250587](image-20200306095250587.png)
+
+7. **SDK**＝放着你想要的软件功能的软件包
+
+   **API**＝SDK上唯一的接口
+
+8. **索引**的意思是将文件整理建立数据库，建立了索引的路径下下次搜索东西非常的快
+
+   
+
 
 #### 2.11 FAQ About Tool
 
@@ -377,7 +404,63 @@ if(dlgOpen3->Execute()){
    
 
 9. 加了**Q_OBJECT宏，才能支持信号槽处理**。-->加了之后请记得在Pro里稍作修改，然后rebuild。
-10.  任意函数获得CMainController指针：RT_pc(CMainController);
+
+10. 任意函数获得CMainController指针：RT_pc(CMainController);
+
+11. CTtlePanel --> CGroupBox,CGroupBox 支持布局。
+
+    /* this->setStyleSheet{
+
+    ​                                       }可用在代码里设置构建的属性；*/
+
+    
+
+    <img src="screenshot-18.png" alt="screenshot-18" style="zoom: 33%;" />
+
+    今天介绍了CGroupBox中一些属性的设置，重点介绍了subControl，一般情况下，只要是复合式组件，都会存在subControl属性。如果实际情况下，想查出哪些组件有这个属性，使用Assistan查。
+
+    ```css
+    QGroupBox{
+    border:1px solid #000;
+    margin: 20px;
+    padding:20px;
+    }
+    QGroupBox::title{
+    padding:12px 10px 6px 10px;
+    backGround: #0fa;
+    subcontrol-origin: content;
+    subcontrol-position: left bottom;
+    }
+    ```
+
+    <img src="image-20200309135226589.png" alt="image-20200309135226589" style="zoom: 80%;" />
+
+    ~~~CSS
+    QGroupBox{
+    border:1px solid #909090;
+    font-family: Arial,sans-serif;
+    background-color:#fff;
+    margin-top: 20px;
+    padding:20px;
+    font-weight:bold;
+    font-size:12px;
+    }
+    QGroupBox::title{
+    padding:6px 100000px 6px 10px;
+    backGround: #14892c;;
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    color:#FFF;
+    }
+    ~~~
+
+    ![image-20200309140456820](image-20200309140456820.png)
+
+    
+
+12. 组件式编程：
+
+
 
 ### 3 C++相关
 
@@ -495,8 +578,6 @@ return 0;
 
 16. pa = new Cat;这里指针赋值犯了错误，应该为pa = new Cat;**
 
-#### （/*避免过多子标题，C++知识都放在此条目下*/） 
-
 <span style = 'background:red;'>**友元**</span>
 
 类的数据成员一般定义为私有成员，成员函数一般定义为公有的，依此提供类与外界间的**通信接口**。
@@ -523,6 +604,64 @@ class 派生类名：[继承方式] 基类名
 **公有继承**：基类的公有成员和保护成员在派生类中保持原有访问属性，其私有成员仍为基类的私有成员。
 **私有继承**：基类的公有成员和保护成员在派生类中成了私有成员，其私有成员仍为基类的私有成员。
 **保护继承**：基类的公有成员和保护成员在派生类中成了保护成员，其私有成员仍为基类的私有成员。
+
+<span style = 'background:red;'>**为什么delete之后还要NULL**</span>
+
+~~~C++
+#include <iostream>
+using namespace std;
+int main() 
+{
+    int *p=new int; 
+    *p=3;
+    cout<<"将3赋给p的地址后，指针p读取的值："<<*p<<endl;
+    delete p;
+    cout<<"删除空间后，指针p读取的值："<<*p<<endl;
+    long *p1=new long;
+    *p1=100;
+    cout<<"创建新空间后，指针p中保存的地址："<<p<<endl;
+    cout<<"指向新空间的指针p1保存的地址："<<p1<<endl;
+    *p=23;
+    cout<<"将23赋给p的地址后，指针p读取的值："<<*p<<endl;
+    cout<<"将23赋给p的地址后，指针p1读取的值："<<*p1<<endl;
+    delete p1;
+    return 0;
+}
+~~~
+
+如果不NULL（设置为空指针），它会成为野指针。**我们在删除一个指针之后，编译器只会释放该指针所指向的内存空间，而不会删除这个指针本身。**
+
+**编译器默认将释放掉的内存空间回收然后分配给新开辟的空间。**
+
+![img](20141010222912052)
+
+***\*在删除一个指针之后，一定将该指针设置成空指针（即在delete \*p之后一定要加上： p=NULL）\****
+
+<span style = 'background:red;'>**C++传递数组的三种方式**</span>
+
+1.形式参数是一个指针：
+
+```C++
+void myFunction(int *param)
+{
+}
+```
+
+2.形式参数是一个已定义大小的数组：
+
+```C++
+void myFunction(int param[10])
+{
+}
+```
+
+3.形式参数是一个未定义大小的数组：
+
+```C++
+void myFunction(int param[])
+{
+}
+```
 
 ### 4 硬件相关
 
@@ -577,8 +716,11 @@ class 派生类名：[继承方式] 基类名
    MSB LSB：起始地址为最高位， 最后地址为最低位。
 
    LSB MSB：起始地址为最低位，最后地址为最高位。
-   
-   
+
+5. 遥控器失效，确保有电的情况下，进入BootCode选择irda。
+6. 
+
+
 
 ### 5 系统课程
 
@@ -806,7 +948,41 @@ Debug mode 2: Show max-min level
 
 #### 5.6 深入理解操作系统
 
- 
+#### 5.7 QT学习
+
+3. 错误：variable 'CPerson' **has initializer but incomplete type** 
+   原因：xxx对应的类型没有找到，只把xxx声明了但是没给出定义。编译器无从确认你调用的构造函数是什么，在哪儿
+   一**般是没有包含定义xxx的头文件**。
+
+4. array::Value()-->有的变量记得使用构造函数进行初始化。
+   array是可以装rudouble类型的数据。
+
+5. 析构的过程：
+   一定是从后创建的开始析构。
+
+   new的数据一定要想办法析构。
+
+6. 类的声明：先public,再Private；先函数，后数据；
+
+7. ```C++
+   void CMeasureView::clearChart()
+   {
+       if(!p_chart)
+           return;
+       p_chart->removeAllSeries();
+       p_chart->removeAxis(p_chart->axisX());//Chart析构的时候还要remove坐标轴
+       p_chart->removeAxis(p_chart->axisY());
+   }
+   ```
+
+8. ```C++
+   pItem->setFlags(pItem->flags() & (~Qt::ItemIsEditable));
+   /*这个设置只能在Table里已经塞了Text(进而存在Item才能进行)*/
+   ```
+
+
+
+
 
 ### 6 Git/SQL/GitBook
 
