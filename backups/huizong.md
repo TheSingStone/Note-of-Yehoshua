@@ -480,7 +480,72 @@ if(dlgOpen3->Execute()){
        }
    ```
 
-#### 3.2 Global about C++
+#### 3.2 Global about BCB
+
+1. bcb 中Tstrnggrid cell中塞控件，会有错位闪的问题。 替代方案是，用TScrollBox 去替代TStringGrid 的vertical scallbar。
+
+   \1. 控件（checkbox) ,与 TStringGrid 都放到TscrollBar里，
+   \2. TStringGrid要足够高，保证能塞下所有cell，并且自己不出现scrollbar
+   \3. checkbox top/left为主可通过算cell位置来得到（一个cell 高度=边缘线宽 + cellDefaultHeight) 
+
+   <img src="712d5970f5a0735b8ecd5ff00ac053b3.jpg" alt="img" style="zoom:20%;" />
+
+2. C++把第一位为1的当做有符号数，第一位为0的当做无符号数；
+
+3. 寻找寄存器的最低位和最高位，以及应用来寻找特定寄存器的所占的位数；
+
+   ~~~C++
+   	int i, stBit, endBit,Bit_num;
+       outputgamma_out_gamma_port_RBUS   reg_outputgamma_out_gamma_port;
+       reg_outputgamma_out_gamma_port.regValue = 0;
+       reg_outputgamma_out_gamma_port.out_gamma_tab_d0 = 0xffffffff;
+   	//将整个寄存器置零，将待考察的片段赋予1
+       i = 0;
+       while(!((reg_outputgamma_out_gamma_port.regValue >> i) & 0x1) && (i < 32))
+           i++;
+       stBit = i;
+       i++;
+       while(((reg_outputgamma_out_gamma_port.regValue >> i) & 0x1) && (i < 32))
+           i++;
+       endBit = i - 1;
+       Bit_num = endBit - stBit;
+       return Bit_num;
+   ~~~
+
+4. BCB中输出组件下特定类子控件的名称，或者遍历全部特定类型的子控件：
+
+   ~~~C++
+   AnsiString namestring="TCheckBox";
+   for(int i=0;i<Spatial_Pattern->ControlCount;i++)
+   {
+       if (Spatial_Pattern->Controls[i]->ClassNameIs(namestring))//判断类型为TCheckBox
+       {
+           TCheckBox *p=dynamic_cast<TCheckBox*>(Spatial_Pattern->Controls[i]); 
+           logFile<<i<<"   "<<(p->Name).c_str()<<endl;
+           logFile.flush();
+       }
+   }
+   ~~~
+
+5. AnsiString转int 
+
+   ~~~c++
+   int b = (int)StrToFloat(AnsiString);
+   ~~~
+
+   获取AnsiString的SubString，即切片操作：
+
+   ~~~C++
+   AnsiString.SubString(bit, AnsiString.Length());
+   ~~~
+
+   AnsiString更多用法参考：https://www.cnblogs.com/LittleTiger/p/4738602.html
+
+   网页中有移除错误：AnsiCompare函数在字符串相等的视乎，返回的是0，不相等的时候返回的非零数。
+
+
+
+#### 3.3 Global about C++
 
 1. 全局变量：生命周期跨越整个程序运行期间，优先于Main函数进行初始化，在main函数返回后撤销即析构。
 

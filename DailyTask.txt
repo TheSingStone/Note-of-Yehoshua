@@ -1,8 +1,7 @@
-*************** 实时 ***************
-1.Sony Project准备；
-2.SDK研究；
-3.QGamma；
-4.能否看driver或开通权限；
+*************** Current ***************
+T7.mac6p outputGamma中的measure中的start总是存在问题：
+C1.VALC
+T1.QGamma；
 ************  To-do Task  ***********
 *T1: QGammaMeasure:
 	**a. Chart
@@ -16,6 +15,13 @@
 *T4:VideoPath Tool和Spec;
 *T5:查看Array的写法;
 *T6:Gamma Measure中Y2R错误；
+*T7:mac6p outputGamma中的measure中的start总是存在问题：
+    a. 图表中的线条是LUT还是verify之后的亮度线；
+	   两者能否考虑分开放置；
+	b. 目前verify的线条仍然是错误的，待修正;
+	c.有没有更好的办法实现切换Channel，图标线条颜色跟着变化;
+*T8:有没有办法实现chk的批量动态加载;
+*T9:SDK研究;
 ************Tasks in free time**********
 *Ts1:写一个脚本自动把本周任务更
 	新在桌面上;
