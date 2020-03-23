@@ -415,7 +415,7 @@ if(dlgOpen3->Execute()){
 
     
 
-    <img src="screenshot-18.png" alt="screenshot-18" style="zoom: 33%;" />
+    <img src="screenshot-18.png" alt="screenshot-18" style="zoom: 50%;" />
 
     今天介绍了CGroupBox中一些属性的设置，重点介绍了subControl，一般情况下，只要是复合式组件，都会存在subControl属性。如果实际情况下，想查出哪些组件有这个属性，使用Assistan查。
 
@@ -543,7 +543,19 @@ if(dlgOpen3->Execute()){
 
    网页中有移除错误：AnsiCompare函数在字符串相等的视乎，返回的是0，不相等的时候返回的非零数。
 
+6. 将窗口中的关闭按钮置为不可用：
 
+   ```C++
+   HWND   m_hWnd = GetSystemMenu(this-> Handle,false);         
+   EnableMenuItem(m_hWnd,SC_CLOSE,MF_GRAYED);
+   ```
+
+7. 有关BCB中panel的放置：
+   <img src="image-20200319161038647.png" alt="image-20200319161038647" style="zoom: 50%;" />
+
+   请参考https://blog.csdn.net/cc001100/article/details/81113928?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
+
+   
 
 #### 3.3 Global about C++
 
@@ -727,6 +739,10 @@ void myFunction(int param[])
 {
 }
 ```
+
+<span style = 'color:red;'>1.  Error error: invalid new-expression of abstract class type</span>
+
+
 
 ### 4 硬件相关
 
