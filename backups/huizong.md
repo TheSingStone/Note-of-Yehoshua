@@ -1,3 +1,5 @@
+
+
 # Notes
 
 <span style='color:red;'>如果一件事决定去做，请一定尽快做完</span>
@@ -20,20 +22,9 @@
 
 ## 一. 处理问题进展
 
-- [x] 给数据，把数据显示到Chart上
-- [ ] 整理Measure的OutPut
-- [ ] 再验一遍Gamma Tool（不能老是有Bug）-->Due Date: 2020/03/05
 
-### 处理问题进展表
 
-| 任务                     | 子任务/进度 | 经验的连接 |
-| :----------------------- | :---------- | ---------- |
-| R对应的图标              | 10          |            |
-| init文档以及读取initFile | 10          |            |
-| Button的Slots            | 10          |            |
-| ViewChange               | 10          |            |
-| Load/Export              |             |            |
-| Read/Write               |             |            |
+### 处理问题及即时问题反馈
 
 Q1. CButton的属性在设置父控件的styleSheet后会改变？
 
@@ -76,6 +67,16 @@ Q8. LayoutHorizonalApacing属性是什么意思？
    ![image-20200225143200842](image-20200225143200842.png)
 
 6. \\172.22.34.131\g\K7Lp_Spec2LGE是\\Yyy\G\K7Lp_Spec2LGE对应的路径。
+
+7. jenkins YY师兄的账号：
+
+   joey
+
+   vip2379
+
+   rebuild方式：登录后使用rebuild last
+
+   <img src="image-20200430093928965.png" alt="image-20200430093928965" style="zoom: 67%;" />
 
 ## 二. 笔记（经验整理）
 
@@ -185,7 +186,7 @@ logFile.clear();
 
     FYI：在整理Global文件中必须的文件时，比较简便的方法是让编辑器告诉你哪些文件缺失，这样整理起来会快一点。
 
-6. 使Tab不可见：TabSheet1->TabVisible = false;
+6. 使Tab不可见：TabSheet1->**TabVisible** = false;
 
 7. 使用SecureCRT记得要断掉之后，才能在Tool里进行读写操作。
 
@@ -196,6 +197,12 @@ logFile.clear();
 10. 查看Tool的Owner直接查看code的log，看看最近上传的人。
 
 11. 在BCB中查看自己的工程文件的目录，可以通过点击**View Unit按钮（Ctrl+F12)**。
+
+12. 更改**platform.db**来检查LGE RTICE设置是否正确：
+
+     使用本地Tool release出一版Tool，然后更改platform.db-->sysconfig.qt中的info信息。加上：
+
+     {"customer":{"name":"LGE","is":"1"}并保存即可。
 
 #### 2.4 在VideoPath中添加PTG步骤
 
@@ -480,6 +487,36 @@ if(dlgOpen3->Execute()){
        }
    ```
 
+2. ```C++
+   if (atvInfo.is_set("Demod")) {
+           array &atvTypeInfo = *(atvInfo["Demod"].value.val_array);
+           const char *atvTypeName = atvTypeInfo.find_firstKey();
+           while (atvTypeName) {
+               ui->cbxDemod->addItem(atvTypeName);
+               atvTypeName = atvTypeInfo.find_nextKey();
+           }
+       }
+   /*请使用非map方式进行改写*/
+   ```
+
+3.  bool型与QString型之间的相互转换
+
+   bool testParam;
+
+   QString tempParam = QString::number(testParam);
+
+   //上面是bool 转QString;
+
+   
+
+   QVariant tempValue = tempParam;
+
+   bool tempFinished = tempValue.toBool();
+
+   //这样就把QString 类型的转换回去了。
+   ————————————————
+   原文链接：https://blog.csdn.net/li235456789/article/details/50696942
+
 #### 3.2 Global about BCB
 
 1. bcb 中Tstrnggrid cell中塞控件，会有错位闪的问题。 替代方案是，用TScrollBox 去替代TStringGrid 的vertical scallbar。
@@ -554,6 +591,11 @@ if(dlgOpen3->Execute()){
    <img src="image-20200319161038647.png" alt="image-20200319161038647" style="zoom: 50%;" />
 
    请参考https://blog.csdn.net/cc001100/article/details/81113928?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
+
+8. 有关WriteShareMemory中，进度条和中途Cancel的使用根据是BCB工程或QT工程参考：
+   independ中的BurnImg工程--IOTest工程。
+
+9. 如果在使用BurnImg烧bootCode的时候，如果串口被占用，则
 
    
 
@@ -799,7 +841,7 @@ void myFunction(int param[])
    LSB MSB：起始地址为最低位，最后地址为最高位。
 
 5. 遥控器失效，确保有电的情况下，进入BootCode选择irda。
-6. 
+6. cmodel是视频处理的一些algo,此部分大部分是由SD用c/c++语言撰写。为什么会跟RTL mismatch，是因为DV这边在验证dic写的rtl code是否正确时会跑simulation, 通过case去给RTL与cmodel同样的register 设定以及相同的input pattern,那就应该看到相同的output. RTL code就是真实的数字设计部分-- @**王静**
 
 
 
