@@ -4,45 +4,73 @@
 
 <span style='color:red;'>如果一件事决定去做，请一定尽快做完</span>
 
-## 零.    待处理任务（至2019.02.19）
+## 零.    待处理任务（至2020.12.11）
 
-**1. Endo  --> 逗号错误  -->算法尝试**
+- [ ] **1.Endo  --> 逗号错误  -->算法尝试**
 
 ​               **-->HUAWEI智慧屏的蓝光会被过滤掉的功能集成在Gamma下面，问问市场那边有没有考虑过？**
 
-**2. VideoPath所经过的模块检查**
+- [ ] **2. VideoPath所经过的模块检查**
 
-**3.  Mac7P的Tool问题**
+- [ ] **3.  Mac7P的Tool问题**
 
-**4. Tool的setMessage的机制；**
+- [ ] **4. Tool的setMessage的机制；**
 
-**5. BCB一些弹窗的不同分辨率下窗口需要缩放的问题**
+- [ ] **5. BCB一些弹窗的不同分辨率下窗口需要缩放的问题**
 
-**6. Mac 6P 7P Output Gamma曲线调整方式需要改进**
+- [ ] **6. Mac 6P 7P Output Gamma曲线调整方式需要改进**
+
+- [ ] **10.矩阵类的书写；（格式参考）**
+
+  
+
+  ### **本周任务**
+
+  ---
+
+- [x] **7.H5C2 Function Spec**
+
+- [ ] **8.Mark2 的Tool问题：Dither,HDMI Debug**
+
+- [x] **9.根据色差公式计算最大允许误差，并且考虑增加Delta E2000页面**
+
+   <img src="F:%5C5GitProgram%5C1Notes%5Cpics%5CMicrosoftTeams-image%20(4).png" alt="MicrosoftTeams-image (4)" style="zoom:33%;" />
+
+- [ ] **10.杂项：a.和李强商量下memory的计算;**
+
+  ​                   **b.测试inv_gamma;**
+
+  ​                   **c.测试dither；**
+
+  ​                    
+
+------
+
+
 
 ## 一. 处理问题进展
 
+### 1.即时问题反馈（2020/12/4）
+
+Q1.ACL3 Path指的是什么？8P转成1P是指什么？
+
+Q2.什么是PinShare Script？
+
+T8.1：处理merlin6上的hdmiDebug问题。
+
+T9.1：验证在标准点上矩阵是否有效？
+
+T9.2：试验3DMatrix；
+
+T9.3：确定最后的插值算法；
+
+T9.4：确定ΔE公式，并显示在UI上。
 
 
-### 处理问题及即时问题反馈
 
-Q1. CButton的属性在设置父控件的styleSheet后会改变？
 
-Q2. RT_pc(CMainController)是什么意思？
 
-Q3. void setIniFileParam(QString section,QString name,QString value,**QString file=""**);
-
-Q4. ini文档是怎样读入的？--> System类是怎样工作的？
-
-Q5.typedef怎样理解？
-
-Q6. 根据需求能够变化大小的数组？
-
-Q7.BCB 中把可编辑的表格花城不可编辑表格的样式？
-
-Q8. LayoutHorizonalApacing属性是什么意思？
-
-### Log备忘录
+### 2.日志
 
 1. RT电脑IP： 172.22.38.139
 
@@ -77,6 +105,27 @@ Q8. LayoutHorizonalApacing属性是什么意思？
    rebuild方式：登录后使用rebuild last
 
    <img src="image-20200430093928965.png" alt="image-20200430093928965" style="zoom: 67%;" />
+
+
+
+### 3.工作流程技巧
+
+1. 寻找IP Status的parent页面：因为直接再projects里直接打开JIRA，看不到那个父页面。
+   
+
+![image-20201127114440964](C:\Users\yehoshua_hou\AppData\Roaming\Typora\typora-user-images\image-20201127114440964.png)
+
+​    可以直接搜索关键字：text ~ "IPStatus" AND text ~ "DISPI" AND text ~ "Ring Filter"，这里选Ring Filter是因为它比较少改动，不会 有其他多余信息，这样可以再在打开的页面中寻找到父页面。
+
+![image-20201127114845134](C:\Users\yehoshua_hou\AppData\Roaming\Typora\typora-user-images\image-20201127114845134.png)
+
+3. 寻找某个IP下的改版建议：
+
+   <img src="F:%5C5GitProgram%5C1Notes%5Cpics%5Cimage-20201127172833756.png" alt="image-20201127172833756" style="zoom: 67%;" />
+
+   eva姐已经整理好。
+
+
 
 ## 二. 笔记（经验整理）
 
@@ -131,6 +180,20 @@ beta = nlinfit(___,Name,Value)
 
 3. 为何校正失败的时候会出现怪怪的图像，怎样才能在失败的时候回复图像到原始状态？
 
+4. Gamma Bit位对应
+
+   ![MicrosoftTeams-image (2)](F:\5GitProgram\1Notes\backups\MicrosoftTeams-image (2).png)
+
+   ---
+
+   ![image-20201201135445027](F:%5C5GitProgram%5C1Notes%5Cpics%5Cimage-20201201135445027.png)
+
+   
+
+   ![image-20201202172640469](F:%5C5GitProgram%5C1Notes%5Cpics%5Cimage-20201202172640469.png
+
+   
+
    
 
 #### 1.3 FYI
@@ -144,6 +207,21 @@ beta = nlinfit(___,Name,Value)
 ![image-20200107132218546](image-20200107132218546.png)
 
 3. LUT的组成部分大都是：0x g0 d0 d1;
+
+4. 矩阵类的工作记录：
+
+   ```C++
+   /*
+   class CArray2{
+       CArray2(array&a);
+       CArray2& operator =(const CArray2&b);
+       CArray2& operator =(const array&b);
+       array toArray();
+       CArray2& operator + (CArray2&b);
+   };*/
+   ```
+
+   
 
 
 
@@ -841,7 +919,10 @@ void myFunction(int param[])
    LSB MSB：起始地址为最低位，最后地址为最高位。
 
 5. 遥控器失效，确保有电的情况下，进入BootCode选择irda。
+
 6. cmodel是视频处理的一些algo,此部分大部分是由SD用c/c++语言撰写。为什么会跟RTL mismatch，是因为DV这边在验证dic写的rtl code是否正确时会跑simulation, 通过case去给RTL与cmodel同样的register 设定以及相同的input pattern,那就应该看到相同的output. RTL code就是真实的数字设计部分-- @**王静**
+
+7. BandWidth=>BW
 
 
 
@@ -1130,6 +1211,89 @@ Debug mode 2: Show max-min level
    | blue    | <span style='color:blue;'>文字</span>    |
    | aqua    | <span style='color:aqua;'>文字</span>    |
 
+   4.**git remote -v** 查看远程库信息
+   
+   yehoshua_hou@A007270514 MINGW64 /f/5GitProgram/1Notes (master)
+   
+   ~~~kotlin
+   $ git remote -v
+   gitee   git@gitee.com:houGitee/Notes_1.git (fetch)
+   gitee   git@gitee.com:houGitee/Notes_1.git (push)
+   github  git@github.com:TheSingStone/Note-of-Yehoshua.git (fetch)
+   github  git@github.com:TheSingStone/Note-of-Yehoshua.git (push)
+   ~~~
+   
+   
+   
    
 
 ### 7 python/图像处理
+
+##### 1. 色差公式：
+
+######  a.Converting between CIELAB and CIEXYZ coordinates
+
+$$
+\begin{cases}
+L^* = 116f(\frac{Y}{Y_n})-16\\
+a^* = 500(f(\frac{X}{X_n}) - f(\frac{Y}{Y_n}))\\
+b^* = 200(f(\frac{Y}{Y_n}) - f(\frac{Z}{Z_n}))
+\end{cases}
+$$
+
+n下标指的是normalized，这里f指的是：
+$$
+f(t)=
+\begin{cases}
+\sqrt[3]{t},&\text {if t>$\delta^3$}\\
+\frac{t}{3\delta^2}+\frac{4}{29},&\text{otherwise}\\
+\end{cases}\\
+t = \frac{Y}{Y_n}\\
+\delta = \frac{6}{29}
+$$
+
+
+根据ΔE2000<=0.5,可以得出以下公式：
+$$
+\frac{116}{3}(\frac{Y}{Y_n})^\left(-\frac{2}{3}\right)(\frac{|\Delta Y|}{Y_n})+\sqrt{\frac{9*500^2}{4}\left[(\frac{X}{X_n})^\frac{1}{3}-(\frac{Y}{Y_n})^\frac{1}{3}\right]^2+200^2\left[(\frac{Y}{Y_n})^\frac{1}{3}-(\frac{Z}{Z_n})^\frac{1}{3}\right]^2}\le\frac{\sqrt{2}}{2}
+$$
+利用
+$$
+\begin{cases}
+X = Y*\left(\frac{x}{y}\right)\\
+X_n = Y_n*\left(\frac{x_t}{y_t}\right)\\
+Z_n = Y_n*\left(\frac{z_t}{y_t}\right)\\
+\end{cases}
+$$
+可以进一步化简，其中:$X_t 是目标色度x，Y_t是目标色度y$ ，
+$$
+\frac{116}{3}\left(\frac{\lvert\Delta Y\rvert}{Y}\right)+\sqrt{562500\times\left[\left(\frac{x\cdot y_t}{x_t\cdot y}\right)^\frac{1}{3}-1\right]^2 + 40000\times\left[1-\left(\frac{z\cdot y_t}{z_t\cdot y}\right)^\frac{1}{3}\right]^2}\le\frac{\sqrt{2}}{2}\left(\frac{Y}{Y_n}\right)^\left(-\frac{1}{3}\right)
+$$
+进一步地：
+$$
+\frac{116}{3}\left(\lvert lv\_diff\rvert\right)+\sqrt{562500\times\left[\left(\frac{1-x\_diff}{1-y\_diff}\right)^\frac{1}{3}-1\right]^2 + 40000\times\left[1-\left(\frac{1-z\_diff}{1-y\_diff}\right)^\frac{1}{3}\right]^2}\le\frac{\sqrt{2}}{2}\left(\frac{Y}{Y_n}\right)^\left(-\frac{1}{3}\right)
+$$
+其中：
+$$
+\begin{cases}
+lv\_diff = \left(\frac{\Delta Y}{Y}\right)\\
+x\_diff = \left(\frac{\Delta x}{x_t}\right)\\
+y\_diff = \left(\frac{\Delta y}{y_t}\right)\\
+z\_diff = \left(\frac{\Delta z}{z_t}\right)\\
+\end{cases}
+$$
+
+
+
+
+
+
+
+
+
+
+2. ##### 色彩计算过程
+
+   可参照知乎专栏：[手把手教你计算D65下 L*a*b*](https://zhuanlan.zhihu.com/p/31684145)
+
+   
