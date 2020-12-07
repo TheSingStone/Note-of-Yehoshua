@@ -1,5 +1,11 @@
 
 
+
+
+
+
+
+
 # Notes
 
 <span style='color:red;'>如果一件事决定去做，请一定尽快做完</span>
@@ -1184,6 +1190,8 @@ Debug mode 2: Show max-min level
    /*这个设置只能在Table里已经塞了Text(进而存在Item才能进行)*/
    ```
 
+#### 5.8 local dimming
+
 
 
 
@@ -1211,17 +1219,24 @@ Debug mode 2: Show max-min level
    | blue    | <span style='color:blue;'>文字</span>    |
    | aqua    | <span style='color:aqua;'>文字</span>    |
 
-   4.**git remote -v** 查看远程库信息
+   #### 6.2 git 
    
-   yehoshua_hou@A007270514 MINGW64 /f/5GitProgram/1Notes (master)
+   1.**git remote -v** 查看远程库信息
    
    ~~~kotlin
+   yehoshua_hou@A007270514 MINGW64 /f/5GitProgram/1Notes (master)
    $ git remote -v
    gitee   git@gitee.com:houGitee/Notes_1.git (fetch)
    gitee   git@gitee.com:houGitee/Notes_1.git (push)
    github  git@github.com:TheSingStone/Note-of-Yehoshua.git (fetch)
    github  git@github.com:TheSingStone/Note-of-Yehoshua.git (push)
    ~~~
+   
+   2.1Notes 远程库名字
+   
+    ~~~ c
+   git push gitee master
+    ~~~
    
    
    
