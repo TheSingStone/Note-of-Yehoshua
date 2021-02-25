@@ -10,6 +10,8 @@
 
 <span style='color:red;'>如果一件事决定去做，请一定尽快做完</span>
 
+<span style='color:red;'>写得足够快，才有机会犯错</span>
+
 ## 零.    待处理任务（至2020.12.11）
 
 - [ ] **1.Endo  --> 逗号错误  -->算法尝试**
@@ -72,7 +74,17 @@ T9.3：确定最后的插值算法；
 
 T9.4：确定ΔE公式，并显示在UI上。
 
+Gamma Tool Report：采用Jeffery学长的思路测试了下：
 
+​    1.更改了所有点fineTune顺序
+
+​    因为中间的RGB Combination 永远介于两端的RGB Combination值，这相当于引入一个约束。
+
+​    因为插值后的点总是比 R=G=B 的combination接近Target，所以选择插值后的点作为初始点，相当于一个更优的初始点。
+
+​    故修改了点的调整顺序，并且每次调整后，都会重新插值，并将插值后的整体数据作为新的调整点的参考条件。
+
+![图片1.bmp](F:%5C5GitProgram%5C1Notes%5Cpics%5C%E5%9B%BE%E7%89%871.bmp.png)
 
 
 
@@ -100,9 +112,11 @@ T9.4：确定ΔE公式，并显示在UI上。
 
    ![image-20200225143200842](image-20200225143200842.png)
 
-6. \\172.22.34.131\g\K7Lp_Spec2LGE是\\Yyy\G\K7Lp_Spec2LGE对应的路径。
+6. VDP密码：bGr9h5Pb
 
-7. jenkins YY师兄的账号：
+7. \\172.22.34.131\g\K7Lp_Spec2LGE是\\Yyy\G\K7Lp_Spec2LGE对应的路径。
+
+8. jenkins YY师兄的账号：
 
    joey
 
@@ -405,7 +419,7 @@ if(dlgOpen3->Execute()){
 
 #### 2.10 FAQ About PC
 
-1. 打开我的电脑页面：工具-->映射磁盘驱动器-->复制粘贴欲映射的路径；
+1.  打开我的电脑页面：工具-->映射磁盘驱动器-->复制粘贴欲映射的路径；
 
 2. 如何让任意窗口置顶？-->制作脚本的方式，使用AutoHotKey，写入以下文字：
 
@@ -417,10 +431,10 @@ if(dlgOpen3->Execute()){
    ~~~
 
    让ahk脚本开机启动：请把文件置于 C:\Users\用户名称\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup路径下。
-   
+
    （这里使用Ctrl+Space来实现窗口置顶）
-   
-3. 批量去掉或替换文本中的换行符：
+
+3.  批量去掉或替换文本中的换行符：
 
    ![img](20160302175254607.png)
 
@@ -435,14 +449,35 @@ if(dlgOpen3->Execute()){
 
 6. ![image-20200306095250587](image-20200306095250587.png)
 
-7. **SDK**＝放着你想要的软件功能的软件包
+7.  **SDK**＝放着你想要的软件功能的软件包
 
    **API**＝SDK上唯一的接口
 
-8. **索引**的意思是将文件整理建立数据库，建立了索引的路径下下次搜索东西非常的快
+8.  **索引**的意思是将文件整理建立数据库，建立了索引的路径下下次搜索东西非常的快
 
-   
+9.  BCompare启动失败：
 
+   <img src="F:%5C5GitProgram%5C1Notes%5Cpics%5Ce996472ae3efe07812277405b96c576698cf65a9.jpg" alt="解决BCompare 应用程序发生错误" style="zoom:67%;" />
+
+   解决办法是删除 C:\用户\[用户名]\AppData\Roaming\Scooter Software\Beyond Compare 3
+
+   目录中的所有文件。
+
+10. SVN遇到报错：
+
+    <img src="F:%5C5GitProgram%5C1Notes%5Cpics%5Cimage-20210201173818160.png" alt="image-20210201173818160" style="zoom: 80%;" />
+
+    在相应的目录中，比如我在更新metasploit的“/opt/metasploit3/msf3/lib/active_support/core_ext”这个目录时就遇到了类似的情况，把.SVN子目录里(注意，“.”目录是个隐藏目录，需要选择“查看”->“显示隐藏文件”菜单项)面log文件删除，就可以了。然后继续做svn cleanup命令。[from /CSDN/ SVN cleanup 失败后的处理](https://blog.csdn.net/josentop/article/details/6897074)
+
+11.Outlook 如何在邮件页面内查找？
+
+​	查找 = F4 ：需要双击一封邮件，弹出独立窗口，然后 F4
+
+12.晶晶的DDR 单独的Tool的存放地址：
+
+​	http://cadinfo.realtek.com/svn/MM/sd-tv-tools/vip_tool/ddrScanTool
+
+13. 打印机安装驱动失败：发现是WIN10禁止SMB1协议，可以在程序和功能-->启用或关闭Windows功能-->勾选 SMB1.0/CIFS…来允许和XP设备进行通信。
 
 #### 2.11 FAQ About Tool
 
@@ -551,13 +586,16 @@ if(dlgOpen3->Execute()){
 
 12. 组件式编程：
 
-13. **outlook使用技巧：**
+13. **outlook使用技巧：** 搜索收件人：from:"xxx",搜索发件人：to:"XXX";F4搜索长邮件；
 
-    搜索收件人：from:"xxx",搜索发件人：to:"XXX";
+14. json_decode_file()读取的是.json文件，而且里面只能有一个大的array：
 
-    F4搜索长邮件；
+    ~~~C++
+        array infos = json_decode_file("D:\\infos.json");
+        qDebug()<<"infos="<<json_encode(infos);
+    ~~~
 
-    
+15. 工作流程：在另一个电脑上使用AutoTest的时候，可以戴一个耳机，往往可以听到报错的声音，可以及时停止并重新测试。
 
 
 
@@ -608,6 +646,8 @@ if(dlgOpen3->Execute()){
    //这样就把QString 类型的转换回去了。
    ————————————————
    原文链接：https://blog.csdn.net/li235456789/article/details/50696942
+
+4. CTable属性：AlternatingRowColors让行与行之间颜色不同；
 
 #### 3.2 Global about BCB
 
@@ -689,7 +729,28 @@ if(dlgOpen3->Execute()){
 
 9. 如果在使用BurnImg烧bootCode的时候，如果串口被占用，则
 
-   
+10. 使用QFile.remove()，要确保没有正在使用的指针指向它：
+
+    ~~~c++
+        QString dbFile = QDir::cleanPath(localDBFile());
+        QString dbFile1 = QDir::cleanPath(dataFile);
+    
+        if(dbFile.compare(dbFile1,Qt::CaseInsensitive) == 0)/*same file*/
+            return;
+        /*close model   ==> 这里就是先删掉指向这个DB的指针*/
+        if(p_model)
+            delete p_model;
+        p_model = NULL;
+        /*replace local database file*/
+        if(QFile(dbFile).exists())
+            QFile(dbFile).remove();
+        if(!QFile(dbFile1).copy(dbFile))
+            setMessage("Fail to replace local database!",'x');
+    ~~~
+
+    
+
+    
 
 #### 3.3 Global about C++
 
@@ -876,7 +937,9 @@ void myFunction(int param[])
 
 <span style = 'color:red;'>1.  Error error: invalid new-expression of abstract class type</span>
 
+#### 3.4 Coding Style:
 
+1. 
 
 ### 4 硬件相关
 
@@ -1314,9 +1377,57 @@ $$
 
 
 
+##### 2.色彩计算过程
 
-2. ##### 色彩计算过程
+可参照知乎专栏：[手把手教你计算D65下 L*a*b*](https://zhuanlan.zhihu.com/p/31684145)
 
-   可参照知乎专栏：[手把手教你计算D65下 L*a*b*](https://zhuanlan.zhihu.com/p/31684145)
+##### 3.Octave读取的txt格式问题
 
-   
+从Excel中复制粘贴时，不用修改。 （不能出现表格空缺，否则会load失败）
+
+### 8 数值算法
+
+1.spline 插值算法：
+
+参考知乎专栏：[三次样条（cubic spline）插值](https://zhuanlan.zhihu.com/p/62860859)
+
+### 9 杂项
+
+#### 1.everything[使用技巧知乎专栏](https://zhuanlan.zhihu.com/p/61334612)：
+
+ 1.1 **要搜索的文件名中同时包含多个关键词怎么办？**
+
+​	加空格，Eg.包含hpe和win的文件：hpe win
+
+​    查询的结果必须按照你输入的顺序。"hpe""win"
+
+1.2 **包含多个关键词中的一个就可以**
+
+​	加竖线。Eg.hpe | win
+
+1.3 **只想要文件夹**
+
+​	加前缀**folder：**。Eg.folder：1Notes
+
+1.4 **只搜索某目录下的文件**
+
+​	目录加反斜杠，**加空格**，加关键词的方式进行搜索。Eg. QRtice\ QGammaMeasure.dll
+
+1.5 **只搜索某种类型的文件**
+
+​	用*.加文件类型后缀的方式。Eg. downloads\ *.pdf
+
+1.6 **使用通配符**
+
+​	"?"代表一个任意字符。Eg. downloads\ *.p??，会显示downloads目录下的pdf文件，ppt文件等等，但不会显示pptx文件
+
+1.7 **不包含某关键词的文件名**
+
+​	不包含由!代表，例如，我们想搜索downloads目录下不是pdf文件的其他文件，可以这样写：downloads\ !*.pdf !*.docx
+
+1.8 **搜索的关键词中包含空格**
+
+​	可以用双引号把它们括起来，这样everything就会把它看待成一个词了。例如，我想查询downloads目录下包含university of bath的文件，可以写： downloads\ "university of"
+
+
+
