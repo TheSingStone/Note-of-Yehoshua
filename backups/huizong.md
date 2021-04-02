@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 # Notes
 
 <span style='color:red;'>如果一件事决定去做，请一定尽快做完</span>
@@ -38,13 +30,13 @@
 
 - [x] **7.H5C2 Function Spec**
 
-- [ ] **8.Mark2 的Tool问题：Dither,HDMI Debug**
+- [x] **8.Mark2 的Tool问题：Dither,HDMI Debug**
 
 - [x] **9.根据色差公式计算最大允许误差，并且考虑增加Delta E2000页面**
 
    <img src="F:%5C5GitProgram%5C1Notes%5Cpics%5CMicrosoftTeams-image%20(4).png" alt="MicrosoftTeams-image (4)" style="zoom:33%;" />
 
-- [ ] **10.杂项：a.和李强商量下memory的计算;**
+- [x] **10.杂项：a.和李强商量下memory的计算;**
 
   ​                   **b.测试inv_gamma;**
 
@@ -242,6 +234,10 @@ beta = nlinfit(___,Name,Value)
    ```
 
    
+
+1.4 CA分析仪：
+
+​    [CA说明书](https://wenku.baidu.com/view/6c1c1977f46527d3240ce0f7.html)
 
 
 
@@ -479,6 +475,41 @@ if(dlgOpen3->Execute()){
 
 13. 打印机安装驱动失败：发现是WIN10禁止SMB1协议，可以在程序和功能-->启用或关闭Windows功能-->勾选 SMB1.0/CIFS…来允许和XP设备进行通信。
 
+14. 删除网络映射的驱动器：
+    假如你的网络驱动器分配的盘符是O，命令如下：
+
+    ```
+    net use O: ``/delete
+    ```
+
+15. [完美解决github访问速度慢](https://zhuanlan.zhihu.com/p/93436925)
+
+    1. 修改本地hosts文件
+
+    ```text
+    windows系统的hosts文件的位置如下：C:\Windows\System32\drivers\etc\hosts
+    mac/linux系统的hosts文件的位置如下：/etc/hosts
+    ```
+
+    2. 增加[http://github.global.ssl.fastly.net](https://link.zhihu.com/?target=http%3A//github.global.ssl.fastly.net)和[http://github.com](https://link.zhihu.com/?target=http%3A//github.com)的映射
+
+    ```text
+    获取Github相关网站的ip
+    访问https://www.ipaddress.com，拉下来，找到页面中下方的“IP Address Tools – Quick Links”
+    分别输入github.global.ssl.fastly.net和github.com，查询ip地址
+    下面是我的配置
+    140.82.114.4	github.com
+    199.232.5.194	github.global.ssl.fastly.net
+    
+    
+    Notes:需要再刷新下DNS：
+    使用win+R输入cmd进入控制台，输入指令 ipconfig /flushdns 刷新DNS
+    ```
+
+    3.命令提示符中输入ping [github.com](https://link.zhihu.com/?target=http%3A//github.com)
+
+    
+
 #### 2.11 FAQ About Tool
 
 1. QT如何**输出十六进制格式**的数据：
@@ -543,7 +574,7 @@ if(dlgOpen3->Execute()){
 
     <img src="screenshot-18.png" alt="screenshot-18" style="zoom: 50%;" />
 
-    今天介绍了CGroupBox中一些属性的设置，重点介绍了subControl，一般情况下，只要是复合式组件，都会存在subControl属性。如果实际情况下，想查出哪些组件有这个属性，使用Assistan查。
+    今天介绍了CGroupBox中一些属性的设置，重点介绍了subControl，一般情况下，只要是复合式组件，都会存在subControl属性。如果实际情况下，想查出哪些组件有这个属性，使用Assistant查。
 
     ```css
     QGroupBox{
@@ -748,9 +779,9 @@ if(dlgOpen3->Execute()){
             setMessage("Fail to replace local database!",'x');
     ~~~
 
-    
+11.TryStrToInt函数；
 
-    
+
 
 #### 3.3 Global about C++
 
@@ -937,6 +968,11 @@ void myFunction(int param[])
 
 <span style = 'color:red;'>1.  Error error: invalid new-expression of abstract class type</span>
 
+<span style = 'background:red;'>**运算符满足交换律**</span>
+
+1. 一般将单目运算符重载为成员函数，将双目运算符重载为友元函数；
+2. 双目运算符重载为友元函数 => 声明里加入friend；定义里放在类外；
+
 #### 3.4 Coding Style:
 
 1. 
@@ -1000,6 +1036,13 @@ void myFunction(int param[])
 6. cmodel是视频处理的一些algo,此部分大部分是由SD用c/c++语言撰写。为什么会跟RTL mismatch，是因为DV这边在验证dic写的rtl code是否正确时会跑simulation, 通过case去给RTL与cmodel同样的register 设定以及相同的input pattern,那就应该看到相同的output. RTL code就是真实的数字设计部分-- @**王静**
 
 7. BandWidth=>BW
+
+8. 今天发现（2020/03/01）以前Mac7P出现的问题的答案：Mac7P以前播放图片的时候，总是一会儿就自动退出；今天发现可能是IC过热导致的问题——因为加上散热板后，Mac7P就不会退出了。
+   散热板来自一块旧板子Mac6P，发现这个钉子是可以直接取下的，进而可以拆掉散热板。
+
+   <img src="F:%5C5GitProgram%5C1Notes%5Cpics%5Cimage-20210301133417131.png" alt="image-20210301133417131" style="zoom:25%;" />
+
+   
 
 
 
@@ -1391,7 +1434,117 @@ $$
 
 参考知乎专栏：[三次样条（cubic spline）插值](https://zhuanlan.zhihu.com/p/62860859)
 
-### 9 杂项
+### 9 Linux系统
+
+1. find and loacate命令：
+
+2. 查看用户列表：
+
+   ~~~text
+   cat etc/passwd
+   ~~~
+
+   
+
+3. 回到根目录：
+
+   ~~~text
+   cd /
+   ~~~
+
+4. vi常见命令：
+
+   <img src="F:%5C5GitProgram%5C1Notes%5Cpics%5CaHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy85UmRMZHpVTDk4aHlqemtYbE05Z0wwSHh2OHZGb3pIcjFTeVIzdVhVZ0xCYlVoYUk2S2ljS1NVOEN6VmZnMkROQ1BEMFN1SkhpYkxuOHhUZjBaaFJaM21RLzY0MA" alt="img" style="zoom:50%;" />
+
+   
+
+   ~~~text
+   
+   #编辑coco文件
+   vi coco
+    
+   #编辑指定目录/tem下的vivi文件
+   vi /tmp/vivi
+    
+   #保存修改
+   :w
+    
+   #退出vi编辑器
+   :q
+    
+   #保存并退出
+   :wq
+    
+   #退出vi编辑器，不保存修改
+   
+   
+   
+   /*设置行号*/
+   #显示该文件下所有行号
+   ：set nu
+    
+   #取消设置行号
+   ：set nonu
+   
+   ~~~
+
+5. linux系统的文件权限的含义：![img](F:%5C5GitProgram%5C1Notes%5Cpics%5C20180713100548270)
+
+6. linux 增加ssh协议错误记录：
+
+   a. 要保证 管理员/.users-gitconfig/自己账户名/.ssh 与 自己账户名字/.ssh下的id_rsa和id_rsa.pub文件要**保持一致**；
+
+   b. 修改后要将linux**文件的权限改掉**：chmod 644 config；chmod 600 id_rsa;
+
+   c. 有过修改没有成功的问题：在Windows上修改，但是linux上用cat文件发现没有修改；=>目前原因还不知道；
+
+   d. 修改完后，要使用ssh-add ~/.users-gitconfig/yehoshua_hou/.ssh/id_rsa，来添加 your_ publickey
+
+   ​    若出现报错：Could not open a connection to your authentication agent，则使用**ssh-agent bash**命令；
+
+   e.今天发现有人会修改管理员文件夹下的.ssh文件，导致失败；
+
+7. [Linux系统修改终端主机名和用户名颜色的方法](https://blog.csdn.net/Luis9527/article/details/105977248)
+
+   ~~~text
+   echo $PS1
+   
+   \d ：代表日期，格式为weekday month date，例如："Mon Aug 1"
+   \H ：完整的主机名称
+   \h ：仅取主机名中的第一个名字
+   \t ：显示时间为24小时格式，如：HH：MM：SS
+   \T ：显示时间为12小时格式
+   \A ：显示时间为24小时格式：HH：MM
+   \u ：当前用户的账号名称
+   \v ：BASH的版本信息
+   \w ：完整的工作目录名称
+   \W ：利用basename取得工作目录名称，只显示最后一个目录名
+   \# ：下达的第几个命令
+   \$ ：提示字符，如果是root用户，提示符为 # ，普通用户则为 $
+   
+   
+   颜色对照表：
+   颜色对照表：
+   F    B
+   30  40 黑色
+   31  41 红色
+   32  42 绿色
+   33  43 黄色
+   34  44 蓝色
+   35  45 紫红色
+   36  46 青蓝色
+   37  47 白色
+   
+   最后我设置的格式：
+   PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[37;40m\][\[\e[32;40m\]\u\[\e[37;40m\]@\h:\[\e[35;40m\]\w\[\e[0m\]]\$'
+   
+   启用
+   source .bashrc
+   ~~~
+
+8. 
+
+### 10 杂项
 
 #### 1.everything[使用技巧知乎专栏](https://zhuanlan.zhihu.com/p/61334612)：
 
@@ -1428,6 +1581,49 @@ $$
 1.8 **搜索的关键词中包含空格**
 
 ​	可以用双引号把它们括起来，这样everything就会把它看待成一个词了。例如，我想查询downloads目录下包含university of bath的文件，可以写： downloads\ "university of"
+
+#### 2. 知网
+
+**12.25原文网站：**
+
+1. 浙江图书馆：https://www.zjlib.cn/
+2. 杭州图书馆：https://www.hzlib.net/
+3. 贵州数字图书馆：http://www.gzlib.org/
+4. 广西壮族自治区图书馆：http://www.gxlib.org.cn/
+5. 广州数字图书馆：http://www.gzlib.org.cn/
+6. 福建省图书馆：http://www.fjlib.net/
+7. iDate：https://www.cn-ki.net/
+8. sci-hub：https://sci-hub.org.cn/
+
+备用域名：
+
+https://sci-hub.org.cn/
+
+https://sci-hub.tw
+
+https://sci-hub.se
+
+https://sci-hub.shop
+
+https://sci-hub.fun
+
+http://www.sci-hub.ac.cn/
+
+1. oalib：https://www.oalib.com/
+2. 国家哲学社会科学文献中心：http://www.ncpssd.org/index.aspx
+
+
+
+**12.30日更新网站：**
+
+1. 库问搜索：http://www.koovin.com/
+2. 上海研发公共服务平台：http://www.sstir.cn/
+3. 全国图书馆参考咨询联盟：http://www.ucdrs.superlib.net/
+4. 中国国家数字图书馆：http://www.nlc.cn/
+5. arXiv.org：https://arxiv.org/
+6. Springer Link：https://link.springer.com/
+7. 小狗文献：https://www.puppy-med.com/
+8. 谷歌镜像：https://ac.scmor.com/
 
 
 

@@ -3,13 +3,68 @@
 NOTE：
 T：Task  E：Experience P：Purpose
 
+### 2021.03.29
+
+Z:\merlin6\rtk\kernel\linux\linux-4.14\drivers\rtk_kdriver\rtice\core\rtk_ice.c
+
+构造函数默认参数必须最后？
 
 
 
+### 2021/02/25-2021/03/01
+
+T1. Mac6P Burn => 为了在6P上实验QGammaTool；=> Fail(没有找到解决办法)，后续决定使用Mac7P做实验；
+
+T2. Mark2 Tool 的验证工作与解决：
+
+​      2.1 Measure Y2R失败；=>确认是IC的问题。LG的Data Path不走Y2R
+
+​      2.2 inv_out_Gamma enable看不出效果；=>在新IC上有效果；
+
+​      2.3 osd_Gamma gamma1R/W失败且看不出画面效果；=>在新IC上有效果；
+T3. QGammaMeasure[Beta] 
+
+​     3.0 Daily Task
+
+​     3.1 使用Inventor画出GIF=>导入msgBox；
+
+​     3.2 使用NoteBook实现=>弹出打panel的窗口；
+
+​     3.3 把新算法拆开CStrategy；
+
+T4. QGammaMeasure
+
+​     4.1 实现调整Gamma View曲线功能；
+
+​    		1.初步实现<img src="F:%5C5GitProgram%5C1Notes%5Cpics%5Cimage-20210305143627475.png" alt="image-20210305143627475" style="zoom:33%;" />
+
+​			2.实现legend markers
+
+
+
+​     4.2 bug:negative_squared_cross_mark::outputGamma port以现有的LUT作为Base；
+
+​     4.2 Fast Search ： 4.2.1 Retry 二分法；
+
+​                                     4.2.2 更强的规律性；
+
+T5.Merlin7
+
+T6.Mark2:    Output Gamma=>Done；
+
+​     				 OSD Gamma=>Done
+
+​    
+
+T7.Mac7P： OSD Gamma Tools => Done;​​
+
+E1:In the front data path, many IP are processed in YUV color domain to panel. But the IP afterwards, such Contrast, Brightness, sRGB, **Gamma**, Dither, are **processed in RGB color domain**. 
+
+​     
 
 ### 2021/02/01
 
-#### 1.hdmiDebug修改记录
+#### Q1.hdmiDebug修改记录
 
 只是删掉 QT       += xlsx 这个声明。
 
@@ -84,3 +139,4 @@ T1：完成Measure过程中所有需要用户交互的对话框类。
 2893: H5X
  2892X (TCL) :H5C2
 
+E3.
