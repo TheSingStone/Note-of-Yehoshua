@@ -973,6 +973,10 @@ void myFunction(int param[])
 1. 一般将单目运算符重载为成员函数，将双目运算符重载为友元函数；
 2. 双目运算符重载为友元函数 => 声明里加入friend；定义里放在类外；
 
+<span style = 'background:green;'>**类的构造函数**</span>
+
+默认参数必须从参数列表的右端开始。
+
 #### 3.4 Coding Style:
 
 1. 
@@ -1542,7 +1546,50 @@ $$
    source .bashrc
    ~~~
 
-8. 
+8. 显示所有文件(这里为了显示以"."开后的文件）：
+
+   ls -a
+
+   ls -d .*
+
+9. find命令：
+
+   1) 查找文件里的内容：
+
+   ~~~bash
+   find -type f -print -exec grep gamma {} \;
+   
+   
+   查找目录下的所有文件中是否含有某个字符串
+   find .|xargs grep -ri "xxxx"
+   查找目录下的所有文件中是否含有某个字符串,并且只打印出文件名
+   find .|xargs grep -ri "xxxx" -l 
+   ~~~
+
+   2) linux记录终端保存到文本：
+
+   ```bash
+   sudo script screen.log
+   exit/Ctrl + D
+   ```
+
+   3) 清屏命令：
+
+   ​	a. clear (= ctrl + l = reset)
+
+   这个命令将会刷新屏幕，本质上只是让终端显示页向后翻了一页，如果向上滚动屏幕还可以看到之前的操作信息。一般都会用这个命令。
+
+   ​	b. 另外介绍一个用别名来使用清屏命令的方法，如下：
+
+   ~~~bash
+   [root@localhost ~]$ alias cls='clear'
+   [root@localhost ~]$ cls
+   ~~~
+
+   执行以上命令后，以后你就可以直接输入 cls 命令来实现和 clear 一样的清屏命令了。
+
+   当然，alias命令用来设置指令的别名。我们可以使用该命令可以将一些较长的命令进行简化。alias命令的作用只局限于该次登入的操作。若要每次登入都能够使用这些命令别名，则可将相应的alias命令存放到bash的初始化文件/etc/bashrc中。
+   
 
 ### 10 杂项
 

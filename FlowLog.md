@@ -3,9 +3,25 @@
 NOTE：
 T：Task  E：Experience P：Purpose
 
+### 2021.04.07
+
+各个IP在driver里的位置：
+
+搜索命令：
+
+1.Gamma：scaler_vpqdev.c
+
+
+
+<img src="F:%5C5GitProgram%5C1Notes%5Cpics%5Cimage-20210407174747418.png" alt="image-20210407174747418" style="zoom:67%;" />
+
+写入数据库耗费时间过长；
+
 ### 2021.03.29
 
 Z:\merlin6\rtk\kernel\linux\linux-4.14\drivers\rtk_kdriver\rtice\core\rtk_ice.c
+
+~/merlin6/rtk/kernel/linux/linux-4.14/drivers/rtk_kdriver/tvscalercontrol/vip
 
 构造函数默认参数必须最后？
 
